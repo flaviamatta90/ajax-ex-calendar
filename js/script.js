@@ -9,24 +9,25 @@ $(document).ready(
     var source = $("#entry-template").html();
     var template = Handlebars.compile(source);
 
+    var dateCompleteMoment = moment(date);
+
     for (var i = 1; i <= momentDate.daysInMonth(); i++){
-
-      var day = addZero(i);
-
-      var dateComplete = momentDate.format("YYYY") + "-" + momentDate.format("MM") + "-" + day;
 
       var context = {
         "day" : i,
         "month" : momentDate.format("MMMM"),
-        "dateComplete" : dateComplete
+        "dateComplete" : dateCompleteMoment.format("YYYY-MM-DD")
       };
 
       var html = template(context);
 
       $("#days").append(html);
 
-    }
+      var day = addZero(i);
 
+      dateCompleteMoment.add(1, 'day');
+
+    }
 
 
     $.ajax(
@@ -49,7 +50,7 @@ $(document).ready(
 
   function stampaRisultato(holidays) {
 
-    if (holidays.lenght > 0) {
+    if (holidays.length > 0) {
       for (var i = 0; i < holidays.length; i++) {
 
         var holidayDate = holidays[i].date;

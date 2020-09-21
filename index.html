@@ -2,18 +2,18 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
-    <script src="https://momentjs.com/downloads/moment.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>ajax</title>
   </head>
   <body>
     <div class="container">
       <header>
         <h1> Gennaio 2018</h1>
-        <div class="prev"> Precendente </div>
-        <div class="next"> Successivo </div>
+        <button class="prev"> Precendente </button>
+        <button class="next"> Seccessivo </button>
       </header>
 
       <ul id="days">
@@ -22,10 +22,9 @@
 
     </div>
 
-    <!-- <li class="day holiday">1 Gennaio <span class="holiday-type"> - Capodanno </span></li> -->
 
     <script id="entry-template" type="text/x-handlebars-template">
-      <li class="day" data-date = "{{dateComplete}}"> {{day}} {{month}} <span class="holidayType"></span></li>
+      <li class="day" data-date="{{dateComplete}}"> {{day}} {{month}} <span class="holidayType"></span></li>
 
 
     </script>
