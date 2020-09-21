@@ -5,8 +5,10 @@ $(document).ready(
 
     var momentDate = moment(date);
 
+    var month = momentDate.format('M') - 1;
+
     printCalendar(momentDate);
-    stampaRisultato();
+    // stampaRisultato(momentDate);
 
 
     $(".prev").click(function(){
@@ -54,46 +56,40 @@ $(document).ready(
 
         dateCompleteMoment.add(1, 'day');
 
-      }
-    }
+      };
 
+      function stampaRisultato(momentDate){
 
-    var month = momentDate.format('M') - 1;
+        $.ajax(
+        {
+          url: "https://flynn.boolean.careers/exercises/api/holidays",
+          "data" : {
+            "year": 2018,
+            "month" : month
+          },
 
+          "method": "GET",
+          "success": function (data, stato) {
+            var holidays = data.response;
+            for (var i = 0; i < holidays.length; i++) {
 
-    function stampaRisultato(momentDate){
+              var holidayDate = holidays[i].date;
+              var holidayName = holidays[i].name;
 
-      $.ajax(
-      {
-        url: "https://flynn.boolean.careers/exercises/api/holidays",
-        "data" : {
-          "year": 2018,
-          "month" : month
-        },
+              var item = $(".day[data-date = '"+holidayDate+"']");
 
-        "method": "GET",
-        "success": function (data, stato) {
-          var holidays = data.response;
-          for (var i = 0; i < holidays.length; i++) {
+              item.addClass("holiday");
+              item.children(".holidayType").text("- " +holidayName);
 
-            var holidayDate = holidays[i].date;
-            var holidayName = holidays[i].name;
-
-            var item = $(".day[data-date = '"+holidayDate+"']");
-
-            item.addClass("holiday");
-            item.children(".holidayType").text("- " +holidayName);
-
+            }
+          },
+          error: function (richiesta, stato, errori) {
+          alert("E' avvenuto un errore. " + errore);
           }
-        },
-        error: function (richiesta, stato, errori) {
-        alert("E' avvenuto un errore. " + errore);
-        }
-      });
+        });
+      }
+
     }
-
-
-
 
 
   });
