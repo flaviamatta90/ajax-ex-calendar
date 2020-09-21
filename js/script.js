@@ -14,7 +14,6 @@ $(document).ready(
       }else{
         momentDate.subtract(1, 'month');
         printCalendar(momentDate);
-
       }
     });
 
@@ -24,7 +23,6 @@ $(document).ready(
       }else{
         momentDate.add(1, 'month');
         printCalendar(momentDate);
-
       }
     });
 
