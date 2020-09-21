@@ -1,11 +1,12 @@
 $(document).ready(
   function (){
 
-    var date = "2018-04-01";
+    var date = "2018-01-01";
 
     var momentDate = moment(date);
 
     printCalendar(momentDate);
+    stampaRisultato();
 
 
     $(".prev").click(function(){
