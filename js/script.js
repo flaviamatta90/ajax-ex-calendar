@@ -1,7 +1,7 @@
 $(document).ready(
   function (){
 
-    var date = "2018-04-01";
+    var date = "2018-01-01";
 
     var momentDate = moment(date);
 
@@ -31,14 +31,7 @@ $(document).ready(
 
       }
 
-      // var thisM = $('h1').attr('data-date');
-      // var nextM = momentDate.add(1, 'months');
-      // printCalendar(momentDate);
-      // stampaRisultato(momentDate);
-
     });
-
-
 
 
     function printCalendar (momentDate){
@@ -80,7 +73,7 @@ $(document).ready(
         url: "https://flynn.boolean.careers/exercises/api/holidays",
         "data" : {
           "year": 2018,
-          "month" : month
+          "month" : month,
         },
 
         "method": "GET",
@@ -104,6 +97,7 @@ $(document).ready(
       });
     }
 
+    console.log(momentDate);
 
 
   });
