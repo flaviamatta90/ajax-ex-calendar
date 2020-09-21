@@ -1,14 +1,14 @@
 $(document).ready(
   function (){
 
-    var date = "2018-01-01";
+    var date = "2018-04-01";
 
     var momentDate = moment(date);
 
     var month = momentDate.format('M') - 1;
 
     printCalendar(momentDate);
-    // stampaRisultato(momentDate);
+    stampaRisultato(momentDate);
 
 
     $(".prev").click(function(){
@@ -17,17 +17,21 @@ $(document).ready(
       }else{
         momentDate.subtract(1, 'month');
         printCalendar(momentDate);
-      }
-    });
+        stampaRisultato(momentDate);
 
-    $(".next").click(function(){
-      if(momentDate.format("M") == 12){
-        alert("Non puoi andare avanti")
-      }else{
-        momentDate.add(1, 'month');
-        printCalendar(momentDate);
       }
     });
+    //
+    // $(".next").click(function(){
+    //   if(momentDate.format("M") == 12){
+    //     alert("Non puoi andare avanti")
+    //   }else{
+    //     momentDate.add(1, 'month');
+    //     printCalendar(momentDate);
+    //     stampaRisultato(momentDate);
+    //
+    //   }
+    // });
 
 
 
@@ -56,40 +60,44 @@ $(document).ready(
 
         dateCompleteMoment.add(1, 'day');
 
-      };
-
-      function stampaRisultato(momentDate){
-
-        $.ajax(
-        {
-          url: "https://flynn.boolean.careers/exercises/api/holidays",
-          "data" : {
-            "year": 2018,
-            "month" : month
-          },
-
-          "method": "GET",
-          "success": function (data, stato) {
-            var holidays = data.response;
-            for (var i = 0; i < holidays.length; i++) {
-
-              var holidayDate = holidays[i].date;
-              var holidayName = holidays[i].name;
-
-              var item = $(".day[data-date = '"+holidayDate+"']");
-
-              item.addClass("holiday");
-              item.children(".holidayType").text("- " +holidayName);
-
-            }
-          },
-          error: function (richiesta, stato, errori) {
-          alert("E' avvenuto un errore. " + errore);
-          }
-        });
       }
 
+      stampaRisultato(momentDate);
+
     }
+
+
+    function stampaRisultato(){
+
+      $.ajax(
+      {
+        url: "https://flynn.boolean.careers/exercises/api/holidays",
+        "data" : {
+          "year": 2018,
+          "month" : month
+        },
+
+        "method": "GET",
+        "success": function (data, stato) {
+          var holidays = data.response;
+          for (var i = 0; i < holidays.length; i++) {
+
+            var holidayDate = holidays[i].date;
+            var holidayName = holidays[i].name;
+
+            var item = $(".day[data-date = '"+holidayDate+"']");
+
+            item.addClass("holiday");
+            item.children(".holidayType").text("- " +holidayName);
+
+          }
+        },
+        error: function (richiesta, stato, errori) {
+        alert("E' avvenuto un errore. " + errore);
+        }
+      });
+    }
+
 
 
   });
