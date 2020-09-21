@@ -5,11 +5,10 @@ $(document).ready(
 
     var momentDate = moment(date);
 
-    var month = momentDate.format('M') - 1;
-
     printCalendar(momentDate);
 
     stampaRisultato(momentDate);
+
 
     $(".prev").click(function(){
       if(momentDate.format("M") == 1){
@@ -28,7 +27,6 @@ $(document).ready(
         momentDate.add(1, 'months');
         printCalendar(momentDate);
         stampaRisultato(momentDate);
-
       }
 
     });
@@ -56,9 +54,7 @@ $(document).ready(
 
         $("#days").append(html);
 
-
         dateCompleteMoment.add(1, 'day');
-
       }
 
       stampaRisultato(momentDate);
@@ -66,7 +62,9 @@ $(document).ready(
     }
 
 
-    function stampaRisultato(){
+    function stampaRisultato(momentDate){
+
+      var month = momentDate.format('M') - 1;
 
       $.ajax(
       {
@@ -96,8 +94,5 @@ $(document).ready(
         }
       });
     }
-
-    console.log(momentDate);
-
 
   });
