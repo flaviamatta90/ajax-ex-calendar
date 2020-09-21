@@ -62,7 +62,6 @@ $(document).ready(
 
     function stampaRisultato(momentDate){
 
-    }
       $.ajax(
       {
         url: "https://flynn.boolean.careers/exercises/api/holidays",
@@ -90,6 +89,8 @@ $(document).ready(
         alert("E' avvenuto un errore. " + errore);
         }
       });
+    }
+
 
 
 
