@@ -1,37 +1,42 @@
 $(document).ready(
   function (){
 
-    var date = "2018-04-01";
+    var date = "2018-01-01";
 
     var momentDate = moment(date);
 
     var month = momentDate.format('M') - 1;
 
     printCalendar(momentDate);
-    stampaRisultato(momentDate);
-
 
     $(".prev").click(function(){
       if(momentDate.format("M") == 1){
         alert("Non puoi tornare indietro")
       }else{
-        momentDate.subtract(1, 'month');
+        momentDate.subtract(1, 'months');
+        printCalendar(momentDate);
+        stampaRisultato(momentDate);
+      }
+    });
+
+
+    $(".next").click(function(){
+      if(momentDate.format("M") == 12){
+        alert("Non puoi andare avanti")
+      }else{
+        momentDate.add(1, 'months');
         printCalendar(momentDate);
         stampaRisultato(momentDate);
 
       }
+
+      // var thisM = $('h1').attr('data-date');
+      // var nextM = momentDate.add(1, 'months');
+      // printCalendar(momentDate);
+      // stampaRisultato(momentDate);
+
     });
-    //
-    // $(".next").click(function(){
-    //   if(momentDate.format("M") == 12){
-    //     alert("Non puoi andare avanti")
-    //   }else{
-    //     momentDate.add(1, 'month');
-    //     printCalendar(momentDate);
-    //     stampaRisultato(momentDate);
-    //
-    //   }
-    // });
+
 
 
 
