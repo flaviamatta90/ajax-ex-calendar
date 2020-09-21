@@ -1,13 +1,15 @@
 $(document).ready(
   function (){
 
-    var date = "2018-01-01";
+    var date = "2018-04-01";
 
     var momentDate = moment(date);
 
     var month = momentDate.format('M') - 1;
 
     printCalendar(momentDate);
+
+    stampaRisultato(momentDate);
 
     $(".prev").click(function(){
       if(momentDate.format("M") == 1){
@@ -18,7 +20,6 @@ $(document).ready(
         stampaRisultato(momentDate);
       }
     });
-
 
     $(".next").click(function(){
       if(momentDate.format("M") == 12){
