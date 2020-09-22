@@ -33,6 +33,9 @@ $(document).ready(
 
 
     function printCalendar (momentDate){
+
+      var dateCompleteMoment = moment(momentDate);
+
       $("#days").html("");
 
       $("h1").text(momentDate.format("MMMM YYYY"));
@@ -40,7 +43,6 @@ $(document).ready(
       var source = $("#entry-template").html();
       var template = Handlebars.compile(source);
 
-      var dateCompleteMoment = moment(date);
 
       for (var i = 1; i <= momentDate.daysInMonth(); i++){
 
@@ -56,8 +58,6 @@ $(document).ready(
 
         dateCompleteMoment.add(1, 'day');
       }
-
-      stampaRisultato(momentDate);
 
     }
 
@@ -83,7 +83,6 @@ $(document).ready(
             var holidayName = holidays[i].name;
 
             var item = $(".day[data-date = '"+holidayDate+"']");
-
             item.addClass("holiday");
             item.children(".holidayType").text("- " +holidayName);
 
